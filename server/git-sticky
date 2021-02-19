@@ -4,7 +4,7 @@ source git-sticky-globals
 # Where all the stickies to be returned are stored
 STICKIES_TO_RETURN=()
 
-if [[ "$1" == "all" ]]
+if [[ "${1,,}" == "all" ]]
 then 
     while IFS= read -r line
     do
@@ -21,7 +21,7 @@ do
         case "$1" in
             -t)
                 # Searching the titles
-                if [[ "$TITLE" == *"$2"* ]]
+                if [[ "${TITLE,,}" == *"${2,,}"* ]]
                 then 
                     STICKIES_TO_RETURN+="$line\n" 
                 fi
@@ -49,10 +49,10 @@ do
                 if [ "$C_FOUR" = "" ];then C_FOUR=$$;fi
                     # NULL condition needs to be dealt with so we need to place random numbers into any empty cats so that they don't equate with other empty cats 
                     # Fucking frustrating but this solves it
-                if [ "$C_ONE" = "$U_ONE" ] || [ "$C_ONE" = "$U_TWO" ] || [ "$C_ONE" = "$U_THREE" ] || [ "$C_ONE" = "$U_FOUR" ] || 
-                   [ "$C_TWO" = "$U_ONE" ] || [ "$C_TWO" = "$U_TWO" ] || [ "$C_TWO" = "$U_THREE" ] || [ "$C_TWO" = "$U_FOUR" ] || 
-                   [ "$C_THREE" = "$U_ONE" ] || [ "$C_THREE" = "$U_TWO" ] || [ "$C_THREE" = "$U_THREE" ] || [ "$C_THREE" = "$U_FOUR" ] || 
-                   [ "$C_FOUR" = "$U_ONE" ] || [ "$C_FOUR" = "$U_TWO" ] || [ "$C_FOUR" = "$U_THREE" ] || [ "$C_FOUR" = "$U_FOUR" ]
+                if [ "${C_ONE,,}" = "${U_ONE,,}" ] || [ "${C_ONE,,}" = "${U_TWO,,}" ] || [ "${C_ONE,,}" = "${U_THREE,,}" ] || [ "${C_ONE,,}" = "${U_FOUR,,}" ] || 
+                   [ "${C_TWO,,}" = "${U_ONE,,}" ] || [ "${C_TWO,,}" = "${U_TWO,,}" ] || [ "${C_TWO,,}" = "${U_THREE,,}" ] || [ "${C_TWO,,}" = "${U_FOUR,,}" ] || 
+                   [ "${C_THREE,,}" = "${U_ONE,,}" ] || [ "${C_THREE,,}" = "${U_TWO,,}" ] || [ "${C_THREE,,}" = "${U_THREE,,}" ] || [ "${C_THREE,,}" = "${U_FOUR,,}" ] || 
+                   [ "${C_FOUR,,}" = "${U_ONE,,}" ] || [ "${C_FOUR,,}" = "${U_TWO,,}" ] || [ "${C_FOUR,,}" = "${U_THREE,,}" ] || [ "${C_FOUR,,}" = "${U_FOUR,,}" ]
                 then 
                     STICKIES_TO_RETURN+="$line\n"
                 fi
@@ -60,7 +60,7 @@ do
             -b)
                 # We are NOT going to assume that the body is unique
                 NOTE_BODY=$(<$SAVE_FILE_LOCATION/$ID.txt)
-                if [[ "$NOTE_BODY" = *"$2"* ]]
+                if [[ "${NOTE_BODY,,}" = *"${2,,}"* ]]
                 then 
                     STICKIES_TO_RETURN+="$line\n" 
                 fi 
