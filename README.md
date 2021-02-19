@@ -35,7 +35,8 @@ COMMANDS:
 - git-sticky: Can take no arguments and will return all stickies currently saved. Also take -t (Title), -b (Text body), -c (Categories), -id (ID#) 
               If t,b,c flags are specified it will return all sticky notes which contain the matching string. This makes searching for them rather easy.
               If -id flag is specified, if it matches it will return only that sticky, if it doesn't then it will default to regular search without id tag. 
-- print-sticky: This take single argument of sticky note to print. Prints the sticky note to the console in nice format 
+- print-sticky: This can take IDs of stickies to print, or -t, -b, -c to search by and print matching. 
+ - NOTE: It will print all stickies that match one of the flags 
 - rm-sticky: This take single argument of sticky note to delete. NOTE: Deleted Sticky notes are not recoverable (well maybe they are but I have no system for it)
 
 
