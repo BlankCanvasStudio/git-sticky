@@ -28,19 +28,19 @@ HOW TO IMPLEMENT:
 
 
 COMMANDS:
--new-sticky: takes flags -t (title), -b (text body), -c (filterable categories for finding later). Will return the ID# of that particular sticky
--add-sticky: a wrapper for new-sticky becuase I can never remember what I set it to
--edit-sticky: takes ID# of sticky you want to edit as first arg. Then accepts -t (title), -b (test body), and -c (categories) for any values you 
+- new-sticky: takes flags -t (title), -b (text body), -c (filterable categories for finding later). Will return the ID# of that particular sticky
+- add-sticky: a wrapper for new-sticky becuase I can never remember what I set it to
+- edit-sticky: takes ID# of sticky you want to edit as first arg. Then accepts -t (title), -b (test body), and -c (categories) for any values you 
               would like to change. If you do not specify a field to be changed it won't be. There is currently no system to append fields. 
--git-sticky: Can take no arguments and will return all stickies currently saved. Also take -t (Title), -b (Text body), -c (Categories), -id (ID#) 
+- git-sticky: Can take no arguments and will return all stickies currently saved. Also take -t (Title), -b (Text body), -c (Categories), -id (ID#) 
               If t,b,c flags are specified it will return all sticky notes which contain the matching string. This makes searching for them rather easy 
--print-sticky: This take single argument of sticky note to print. Prints the sticky note to the console in nice format 
--rm-sticky: This take single argument of sticky note to delete. NOTE: Deleted Sticky notes are not recoverable (well maybe they are but I have no system for it)
+- print-sticky: This take single argument of sticky note to print. Prints the sticky note to the console in nice format 
+- rm-sticky: This take single argument of sticky note to delete. NOTE: Deleted Sticky notes are not recoverable (well maybe they are but I have no system for it)
 
 
 ESTABLISHING SSH:
--NOTE: You will want to set up passwordless ssh on your SERVER, this takes a lot of the friction out of the program.
--How to enable SSH on Ubuntu: https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/
--How to enable SSH on Raspberry Pi: https://www.raspberrypi.org/documentation/remote-access/ssh/
--How to enable passwordless SSH on Raspberry Pi: https://www.raspberrypi.org/documentation/remote-access/ssh/passwordless.md
+- NOTE: You will want to set up passwordless ssh on your SERVER, this takes a lot of the friction out of the program.
+- How to enable SSH on Ubuntu: https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/
+- How to enable SSH on Raspberry Pi: https://www.raspberrypi.org/documentation/remote-access/ssh/
+- How to enable passwordless SSH on Raspberry Pi: https://www.raspberrypi.org/documentation/remote-access/ssh/passwordless.md
 
