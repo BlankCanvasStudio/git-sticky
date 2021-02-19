@@ -1,0 +1,9 @@
+#!/bin/bash
+
+SEARCH_FILE=sticky-index.txt
+SEARCH_FILE_LOCATION=./git-stickies/$SEARCH_FILE
+SAVE_FILE_LOCATION="./git-stickies"
+
+export SAVE_FILE_LOCATION
+export SEARCH_FILE_LOCATION
+export SEARCH_FILE

@@ -1,0 +1,15 @@
+#!/bin/bash
+source git-sticky-globals
+for STICKY in $@
+do
+if [[ $STICKY =~ [^[:digit:]] ]]
+then 
+    echo -e "Please enter ID# only\n"
+else 
+    grep -v $STICKY $SEARCH_FILE_LOCATION > filename2; mv filename2 $SEARCH_FILE_LOCATION
+    sed -i "/^$/d" $SEARCH_FILE_LOCATION
+	# This will remove all blank lines from the file. A bit overkill but printing a bunch of empty spaces is tilting
+    rm -r $SAVE_FILE_LOCATION/$STICKY.txt
+    echo -e "Removed Sticky ID#$STICKY"
+fi
+done

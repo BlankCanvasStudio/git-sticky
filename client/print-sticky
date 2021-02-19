@@ -1,0 +1,6 @@
+#!/bin/bash
+source client-config
+ssh $SERVER_ADDRESS "
+    cd $SERVER_FOLDER_LOCATION;
+    ./print-sticky $@;
+"

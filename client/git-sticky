@@ -1,0 +1,13 @@
+#!/bin/bash 
+source client-config
+args=("$@")
+    # These quotes are very important. It tells the array to be split on the quotes, not the words
+# Wrapper so that you can do just git-sticky. Could add this server side but too much work
+if [ -z $@ ]
+then
+	args=("all")
+fi
+ssh $SERVER_ADDRESS "
+    cd $SERVER_FOLDER_LOCATION;
+    ./git-sticky ${args[0]} \"${args[1]}\" ${args[2]} \"${args[3]}\" ${args[4]} \"${args[5]}\" ${args[6]} \"${args[7]}\";
+"

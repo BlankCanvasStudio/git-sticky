@@ -1,0 +1,40 @@
+#!/bin/bash 
+source git-sticky-globals
+
+# Generate New Name for the Sticky File
+RANDOM_FILE_NUM=$$
+while [ -f "$RANDOM_FILE_NUM.txt" ]
+do 
+    RANDOM_FILE_NAME=$$
+done 
+
+# Generate the new file
+FILENAME=$SAVE_FILE_LOCATION/$RANDOM_FILE_NUM.txt
+touch $FILENAME 
+
+# Save the parameters to variables
+TITLE=""
+CATEGORY=""
+BODY=""
+
+while [ ! $# -eq 0 ]
+do
+	case "$1" in
+		-t)
+            TITLE=$2
+			;;
+		-b) 
+            BODY=$2
+			;;
+        -c)
+            CATEGORY=$2
+            ;;
+	esac
+    shift
+done
+
+# Save info
+SEARCH_CONTENT=$TITLE~${CATEGORY// /.}~$RANDOM_FILE_NUM
+echo $SEARCH_CONTENT>>$SEARCH_FILE_LOCATION
+echo $BODY>>$FILENAME
+echo Created new sticky note: $RANDOM_FILE_NUM

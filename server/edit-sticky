@@ -1,0 +1,33 @@
+#!/bin/bash 
+source git-sticky-globals
+
+ID=$1
+if [[ $ID =~ [^[:digit:]] ]]
+then 
+    echo Please enter ID# first
+else 
+    IFS="~" read -r TITLE CATEGORY ID <<< $(grep $ID $SEARCH_FILE_LOCATION)
+    BODY=$(<$SAVE_FILE_LOCATION/$ID.txt)
+    while [ ! $# -eq 0 ]
+    do
+        case "$1" in
+            -t)
+                TITLE=$2
+                ;;
+            -b) 
+                BODY=$2
+                ;;
+            -c)
+                CATEGORY=$2
+                ;;
+        esac
+        shift
+    done 
+
+    ./rm-sticky "$ID" > /dev/null
+    # We could overwrite the file but this was a fast fix
+    SEARCH_CONTENT=$TITLE~${CATEGORY// /.}~$ID
+    echo $SEARCH_CONTENT>>$SEARCH_FILE_LOCATION
+    echo $BODY>>$SAVE_FILE_LOCATION/$ID.txt
+    echo Edited Sticky Note
+fi

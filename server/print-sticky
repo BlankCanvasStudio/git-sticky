@@ -1,0 +1,16 @@
+#!/bin/bash
+source git-sticky-globals
+for STICKY in $@
+do
+if [[ $STICKY =~ [^[:digit:]] ]]
+then 
+    echo Please enter ID# only
+else 
+    IFS="~" read -r TITLE CATEGORIES ID <<< $(grep $STICKY $SEARCH_FILE_LOCATION)
+    BODY=$(<$SAVE_FILE_LOCATION/$STICKY.txt)
+    echo -e Title: $TITLE #$ID
+    echo -e Categories: ${CATEGORIES//./ } 
+    echo Note:
+    echo -e "$BODY\n\n"
+fi
+done
