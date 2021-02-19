@@ -13,9 +13,9 @@ then
     shift
 fi
 
-while [ ! $# -eq 0 ]
+keepgoing=true
+while [ ! $# -eq 0 ] && $keepgoing
 do
-    keepgoing=true
     while IFS= read -r line && $keepgoing
     do
         IFS='~' read -r TITLE CATEGORIES ID <<< "$line"

@@ -3,7 +3,7 @@ source client-config
 args=("$@")
     # These quotes are very important. It tells the array to be split on the quotes, not the words
 # Wrapper so that you can do just git-sticky. Could add this server side but too much work
-if [ -z $@ ]
+if [ $# -eq 0 ]
 then
 	args=("all")
 fi
