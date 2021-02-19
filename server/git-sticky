@@ -12,7 +12,6 @@ then
     done < $SEARCH_FILE_LOCATION
     shift
 fi
-
 keepgoing=true
 while [ ! $# -eq 0 ] && $keepgoing
 do

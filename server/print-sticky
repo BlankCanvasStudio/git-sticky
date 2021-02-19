@@ -4,13 +4,70 @@ for STICKY in $@
 do
 if [[ $STICKY =~ [^[:digit:]] ]]
 then 
-    echo Please enter ID# only
+    while IFS= read -r line
+    do
+        IFS='~' read -r TITLE CATEGORIES ID <<< "$line"
+        case "$1" in
+            -t)
+                # Searching the titles
+                if [[ "$TITLE" == *"$2"* ]]
+                then 
+                    STICKIES_TO_RETURN+="$ID " 
+                fi
+                ;;
+            -id) 
+                if [ "$ID" = "$2" ]
+                then 
+
+                    STICKIES_TO_RETURN+="$ID "
+                        # We erase all previous work because it could have slight matches but we know this 
+                            # is the particular sticky we are loking for so we give that up and stop completely
+                fi
+                ;;
+            -c)
+                # Man, this one is going to suck cause we need to iterate through all of these. Jesus fuck
+                IFS='.' read -r C_ONE C_TWO C_THREE C_FOUR <<< "$CATEGORIES"
+                    # 4 categories are max so we strip the cats from the search index
+                IFS=' ' read -r U_ONE U_TWO U_THREE U_FOUR <<< "$2"
+                    # Get the 4 categories from the -c tag
+                # Wow this is going to be a lot or comparisons but whatever
+                if [ "$C_ONE" = "" ];then C_ONE=$$;fi
+                if [ "$C_TWO" = "" ];then C_TWO=$$;fi
+                if [ "$C_THREE" = "" ];then C_THREE=$$;fi
+                if [ "$C_FOUR" = "" ];then C_FOUR=$$;fi
+                    # NULL condition needs to be dealt with so we need to place random numbers into any empty cats so that they don't equate with other empty cats 
+                    # Fucking frustrating but this solves it
+                if [ "$C_ONE" = "$U_ONE" ] || [ "$C_ONE" = "$U_TWO" ] || [ "$C_ONE" = "$U_THREE" ] || [ "$C_ONE" = "$U_FOUR" ] || 
+                   [ "$C_TWO" = "$U_ONE" ] || [ "$C_TWO" = "$U_TWO" ] || [ "$C_TWO" = "$U_THREE" ] || [ "$C_TWO" = "$U_FOUR" ] || 
+                   [ "$C_THREE" = "$U_ONE" ] || [ "$C_THREE" = "$U_TWO" ] || [ "$C_THREE" = "$U_THREE" ] || [ "$C_THREE" = "$U_FOUR" ] || 
+                   [ "$C_FOUR" = "$U_ONE" ] || [ "$C_FOUR" = "$U_TWO" ] || [ "$C_FOUR" = "$U_THREE" ] || [ "$C_FOUR" = "$U_FOUR" ]
+                then 
+                    STICKIES_TO_RETURN+="$ID "
+                fi
+                ;;
+            -b)
+                # We are NOT going to assume that the body is unique
+                NOTE_BODY=$(<$SAVE_FILE_LOCATION/$ID.txt)
+                if [[ "$NOTE_BODY" = *"$2"* ]]
+                then 
+                    STICKIES_TO_RETURN+="$ID " 
+                fi 
+                ;;
+        esac
+    done < $SEARCH_FILE_LOCATION
+    shift
+    shift
 else 
+    STICKIES_TO_RETURN+="$STICKY "
+fi
+done
+
+for STICKY in $STICKIES_TO_RETURN 
+do 
     IFS="~" read -r TITLE CATEGORIES ID <<< $(grep $STICKY $SEARCH_FILE_LOCATION)
     BODY=$(<$SAVE_FILE_LOCATION/$STICKY.txt)
     echo -e Title: $TITLE #$ID
     echo -e Categories: ${CATEGORIES//./ } 
     echo Note:
     echo -e "$BODY\n\n"
-fi
 done
