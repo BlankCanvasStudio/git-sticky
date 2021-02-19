@@ -4,14 +4,13 @@
 USER=your-server-user-name
 ADDRESS=your-servers-ip-address
 
-
 SERVER_ADDRESS=$USER@$ADDRESS 
     # You shouldn't need to edit this one but its a free world
 SERVER_FOLDER_LOCATION=/home/$USER/Documents/git-sticky/server
     # You can change this to whatever you want but if you store it in Documents this will help
-        # 
 CLIENT_FOLDER_LOCATION=$(cd $(dirname "$0") && pwd)
     # If you would like to hard code this you can but it should find the current location of this script
+
 
 # EXPORTING THOSE CONSTANTS 
 
