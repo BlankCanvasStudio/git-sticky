@@ -66,6 +66,7 @@ for STICKY in $STICKIES_TO_RETURN
 do 
     IFS="~" read -r TITLE CATEGORIES ID <<< $(grep $STICKY $SEARCH_FILE_LOCATION)
     BODY=$(<$SAVE_FILE_LOCATION/$STICKY.txt)
+    echo ID: $ID
     echo -e Title: $TITLE #$ID
     echo -e Categories: ${CATEGORIES//./ } 
     echo Note:
