@@ -30,4 +30,5 @@ else
     echo $SEARCH_CONTENT>>$SEARCH_FILE_LOCATION
     echo $BODY>>$SAVE_FILE_LOCATION/$ID.txt
     echo Edited Sticky Note
+    print-sticky $ID
 fi
