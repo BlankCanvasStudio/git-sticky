@@ -1,15 +1,16 @@
 #!/bin/bash
 
 # USER DEFINED CONSTANTS
-USER=your-server-user-name
-ADDRESS=your-servers-ip-address
 
-SERVER_ADDRESS=$USER@$ADDRESS 
-    # You shouldn't need to edit this one but its a free world
-SERVER_FOLDER_LOCATION=/home/$USER/Documents/git-sticky/server
-    # You can change this to whatever you want but if you store it in Documents this will help
-CLIENT_FOLDER_LOCATION=$(cd $(dirname "$0") && pwd)
-    # If you would like to hard code this you can but it should find the current location of this script
+#SERVER_ADDRESS=USER@ADDRESS 
+SERVER_ADDRESS=pi@easellearning.us
+#SERVER_FOLDER_LOCATION=$(cd $(dirname "$0") && pwd)/server
+SERVER_FOLDER_LOCATION=/home/pi/Apps/git-sticky/server
+    # You can change this to whatever you want but if you store it in the same location
+        # server and client side then this will save you some time
+#CLIENT_FOLDER_LOCATION=$(cd $(dirname "$0") && pwd)
+CLIENT_FOLDER_LOCATION=~/GitHub/git-sticky/client
+    # If you would like to hard code this you can but it should fine the location of this script
 
 
 # EXPORTING THOSE CONSTANTS 

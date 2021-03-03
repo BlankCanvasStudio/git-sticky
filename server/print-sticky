@@ -67,10 +67,14 @@ do
     IFS="~" read -r TITLE CATEGORIES ID <<< $(grep $STICKY $SEARCH_FILE_LOCATION)
     BODY=$(<$SAVE_FILE_LOCATION/$STICKY.txt)
 <<<<<<< HEAD
+<<<<<<< HEAD
     echo ID#$ID
 =======
     echo ID: $ID
 >>>>>>> 7d46ce2eb34a9918a730e896a9e4b3e5e38cdf40
+=======
+    echo ID: $ID
+>>>>>>> fe3e21f4d59d60050cb6f3e814488dcebab463ae
     echo -e Title: $TITLE #$ID
     echo -e Categories: ${CATEGORIES//./ } 
     echo Note:

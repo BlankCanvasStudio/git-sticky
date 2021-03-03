@@ -2,7 +2,6 @@
 source client-config
 args=("$@")
     # These quotes are very important. It tells the array to be split on the quotes, not the words
-echo $SERVER_ADDRESS
 ssh $SERVER_ADDRESS "
     cd $SERVER_FOLDER_LOCATION;
     ./new-sticky \"${args[0]}\" \"${args[1]}\" \"${args[2]}\" \"${args[3]}\" \"${args[4]}\" \"${args[5]}\";
